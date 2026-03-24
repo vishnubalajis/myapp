@@ -1,0 +1,88 @@
+body {
+  margin: 0;
+  font-family: 'Georgia', serif;
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fceabb, #f8b500);
+}
+
+.card {
+  width: 420px;
+  padding: 40px;
+  border-radius: 25px;
+  background: #fffaf5;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  text-align: center;
+  border: 2px solid #f8d7a4;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #777;
+}
+
+.parents {
+  font-size: 14px;
+  color: #666;
+  margin: 10px 0;
+}
+
+.events {
+  margin-top: 20px;
+  padding-top: 10px;
+  border-top: 1px dashed #ccc;
+}
+
+.events h3 {
+  color: #b76e79;
+  margin-bottom: 10px;
+}
+
+.quote {
+  margin-top: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+.title {
+  font-size: 32px;
+  margin: 10px 0;
+  color: #b76e79;
+}
+
+.invite-text {
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.couple {
+  font-size: 30px;
+  margin: 15px 0;
+  color: #333;
+}
+
+.couple span {
+  color: #b76e79;
+  margin: 0 10px;
+}
+
+.description {
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.details p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.footer {
+  margin-top: 25px;
+  font-style: italic;
+  color: #555;
+}

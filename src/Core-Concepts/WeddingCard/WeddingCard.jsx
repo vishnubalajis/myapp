@@ -1,12 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import confetti from "canvas-confetti";
 import { motion } from "framer-motion";
 import "./WeddingCard.module.css";
 
 const WeddingCard = () => {
+  const audioRef = useRef(null);
 
   useEffect(() => {
-    // Fireworks burst
+    // 🎵 Play music on first user interaction (any click)
+    const handleFirstInteraction = () => {
+      if (audioRef.current) {
+        audioRef.current.play().catch(() => {
+          console.log("Playback failed");
+        });
+      }
+      document.removeEventListener("click", handleFirstInteraction);
+    };
+
+    document.addEventListener("click", handleFirstInteraction);
+
+    // 🎆 Fireworks burst
     const duration = 3 * 1000;
     const end = Date.now() + duration;
 
@@ -33,57 +46,69 @@ const WeddingCard = () => {
         requestAnimationFrame(frame);
       }
     })();
+
+    return () => {
+      document.removeEventListener("click", handleFirstInteraction);
+    };
   }, []);
 
   return (
     <div className="container">
+
+      {/* 🎵 Background Music */}
+      <audio ref={audioRef} loop>
+        <source src="/wedding-music.mp3" type="audio/mp3" />
+      </audio>
+
       <motion.div
         className="card"
         initial={{ opacity: 0, scale: 0.8 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1 }}
-      >         
+      >
 
-  <h1 className="title">Wedding Invitation</h1>
-<br/>
-  <p className="invite-text">
-    With the divine blessings of our parents
-  </p>
+        <h1 className="title">Wedding Invitation</h1>
+        <br />
 
-  <h2 className="couple">
-    Vishnu <span>&</span> Pinky
-  </h2>
+        <p className="invite-text">
+          With the divine blessings of our parents
+        </p>
 
-  <p className="parents">
-    Son of Mr. Subramani & Mrs. Mallika <br />
-    Daughter of Mr. Ramesh Babu & Mrs. Anitha
-  </p>
+        <h2 className="couple">
+          Vishnu <span>&</span> Pinky
+        </h2>
 
-  <p className="description">
-    Together with their families, request the pleasure of your company
-    at their wedding ceremony.
-  </p>
+        <p className="parents">
+          Son of Mr. Subramani & Mrs. Mallika <br />
+          Daughter of Mr. Ramesh Babu & Mrs. Anitha
+        </p>
 
-  <div className="details">
-    <p><strong>📅 Date:</strong> 18 May 2026</p>
-    <p><strong>🕰 Time:</strong> 09:30 AM</p>
-    <p><strong>📍 Venue:</strong> Salaiperumal Rengasamy-Rukmani Sowrashtra Sabha Mahal , Dindigul</p>
-  </div>
+        <p className="description">
+          Together with their families, request the pleasure of your company
+          at their wedding ceremony.
+        </p>
 
-  <div className="events">
-    <h3>Wedding Events</h3>
-    <p><strong>Engagement:</strong> 17 May 2026</p>
-    <p><strong>Muhurtham:</strong> 18 May 2026, 09:30 AM</p>
-    <p><strong>Reception:</strong> 22 May 2026</p>
-  </div>
+        <div className="details">
+          <p><strong>📅 Date:</strong> 18 May 2026</p>
+          <p><strong>🕰 Time:</strong> 09:30 AM</p>
+          <p><strong>📍 Venue:</strong> Salaiperumal Rengasamy-Rukmani Sowrashtra Sabha Mahal, Dindigul</p>
+        </div>
 
-  <p className="quote">
-    "Two hearts, one soul, and a lifetime of togetherness"
-  </p>
+        <div className="events">
+          <h3>Wedding Events</h3>
+          <p><strong>Engagement:</strong> 17 May 2026</p>
+          <p><strong>Muhurtham:</strong> 18 May 2026, 09:30 AM</p>
+          <p><strong>Reception:</strong> 22 May 2026</p>
+        </div>
 
-  <p className="footer">
-    We eagerly await your presence to bless us on this auspicious occasion ❤️
-  </p>
+        <p className="quote">
+          "Two hearts, one soul, and a lifetime of togetherness"
+        </p>
+
+        <p className="footer">
+          We eagerly await your presence to bless us on this auspicious occasion ❤️
+        </p>
+
       </motion.div>
     </div>
   );
